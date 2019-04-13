@@ -8,7 +8,7 @@ public class PileModele<T> extends  java.util.Observable implements PileI<T> {
 
     private PileI<T> pile;
 
-    /* à compléter */
+     
 
     public PileModele(PileI<T> pile) {
         this.pile = pile;
@@ -20,12 +20,17 @@ public class PileModele<T> extends  java.util.Observable implements PileI<T> {
       notifyObservers(o);
     }
 
-    public T depiler() throws PileVideException {
-        return null;
+     public T depiler() throws PileVideException {
+       
+        setChanged();
+        notifyObservers();
+		
+        return pile.depiler();
     }
 
     public T sommet() throws PileVideException {
-        return null;
+          
+        return pile.sommet();
     }
 
     public int taille() {
@@ -48,8 +53,3 @@ public class PileModele<T> extends  java.util.Observable implements PileI<T> {
         return pile.toString();
     }
 }
-
-/**
- * notez qu'un message d'alerte subsiste à la compilation (unsafe ...) dû à
- * l'emploi de notifyObservers, incontournable et sans conséquence ici
- */

@@ -1,6 +1,11 @@
 #BlueJ class context
-comment0.params=pile
-comment0.target=Controleur(PileModele<Integer>)
-comment1.target=void\ actualiserInterface()
-comment2.target=Integer\ operande()
-numComments=3
+comment0.target=Controleur
+comment1.params=pile
+comment1.target=Controleur(PileModele)
+comment2.params=
+comment2.target=void\ actualiserInterface()
+comment3.params=
+comment3.target=java.lang.Integer\ operande()
+comment4.params=
+comment4.target=void\ verifiePile()
+numComments=5

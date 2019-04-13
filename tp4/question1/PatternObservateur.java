@@ -34,6 +34,19 @@ public class PatternObservateur extends junit.framework.TestCase {
 
         // ne pas modifier ces lignes, dernières assertions vraies de cette
         // méthode
+        assertFalse(o1.senders().empty());
+        assertFalse(o2.senders().empty()); 
+        assertEquals(l1, o1.senders().pop()); //il y a 2 insertions donc 2 pop
+        assertEquals(l1, o1.senders().pop()); 
+        assertEquals(l1, o2.senders().pop());
+        assertEquals(l1, o2.senders().pop()); 
+        assertEquals(" 1 ", o1.arguments().pop());// le dernier element inserer est retourn� le premier
+        assertEquals(" 1 ", o2.arguments().pop());
+        assertEquals("test", o1.arguments().pop());
+        assertEquals("test", o2.arguments().pop());
+        
+
+        
         assertTrue(o1.senders().empty() && o1.arguments().empty());
         assertTrue(o2.senders().empty() && o2.arguments().empty());
     }
@@ -58,6 +71,16 @@ public class PatternObservateur extends junit.framework.TestCase {
 
         // ne pas modifier cette ligne, dernière assertion vraie de cette
         // méthode
+        assertEquals(l2, o.senders().pop());
+        assertEquals(l2, o.senders().pop());
+        assertEquals(l1, o.senders().pop());
+        assertEquals(l1, o.senders().pop());
+        assertEquals(" B ", o.arguments().pop());
+        assertEquals("testB", o.arguments().pop()); 
+        assertEquals(" A ", o.arguments().pop());
+        assertEquals("testA", o.arguments().pop());
+
+        
         assertTrue(o.senders().empty() && o.arguments().empty());
     }
 
@@ -80,6 +103,18 @@ public class PatternObservateur extends junit.framework.TestCase {
 
         // ne pas modifier ces lignes, dernières assertions vraies de cette
         // méthode
+        assertTrue(l1.countObservers() == 2);
+        assertTrue(l2.countObservers() == 2);
+        l1.deleteObserver(o1);
+        assertTrue(l1.countObservers() == 1);
+        l1.deleteObserver(o2);
+        assertTrue(l1.countObservers() == 0);
+        l2.deleteObservers();
+        assertTrue(l2.countObservers() == 0);
+
+        
+        
+        
         assertTrue(o1.senders().empty());
         assertTrue(o2.senders().empty());
         assertTrue(l1.countObservers() == 0);

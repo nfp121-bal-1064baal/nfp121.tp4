@@ -18,7 +18,7 @@ public class IHMQuestion2_1Test extends junit.framework.TestCase
         try{  
             Class.forName("question2.IHMQuestion2_1");
             Class.forName("question2.JButtonObserver");
-            //Class.forName("question2.JMouseObserver");
+            Class.forName("question2.JMouseObserver");
         }catch(ClassNotFoundException e){
             fail("classe absente " + e.getMessage());
         }
@@ -43,6 +43,9 @@ public class IHMQuestion2_1Test extends junit.framework.TestCase
 
     protected void tearDown(){ // throws java.lang.Exception
         f.dispose();
+            f=null;
+        System.gc();
+        robot.delay(200);
     }
 
     public void test_clic_bouton_A() throws Exception{
@@ -60,17 +63,17 @@ public class IHMQuestion2_1Test extends junit.framework.TestCase
         assertTrue("ihm invalide ?, ne pas modifier l'interface", subComponents[2] instanceof JButton);
 
 
-        Point location = subComponents[0].getLocationOnScreen();
-        mouseMoveAndClick(location.x+(subComponents[0].getWidth()/2),location.y+(subComponents[0].getHeight()/2));
+        JButton bouton_A = ((JButton)subComponents[0]);
+        bouton_A.doClick(200);
         TextArea sortie = (TextArea)components[1];
         StringTokenizer st = new StringTokenizer(sortie.getText(),"\n");
-        assertTrue("  3 lignes sont attendues !!!", st.countTokens()==3);
-
+        assertTrue("Cliquer sur le bouton A, 3 lignes sont attendues !!!", st.countTokens()==3); 
+    
     }
     public void test_clic_bouton_B() throws Exception{
         Container panel = f.getContentPane();
         Component[] components = panel.getComponents();
-        assertEquals("ihm invalide ?, ne pas modifier l'interface",components.length, 2);
+        assertEquals("--ihm invalide ?, ne pas modifier l'interface",components.length, 2);
 
         // la bonne IHM
         assertTrue("ihm invalide ?, ne pas modifier l'interface",components[0] instanceof JPanel);
@@ -81,12 +84,13 @@ public class IHMQuestion2_1Test extends junit.framework.TestCase
         assertTrue("ihm invalide ?, ne pas modifier l'interface",subComponents[1] instanceof JButton);
         assertTrue("ihm invalide ?, ne pas modifier l'interface",subComponents[2] instanceof JButton);
 
-
-        Point location = subComponents[1].getLocationOnScreen();
-        mouseMoveAndClick(location.x+(subComponents[1].getWidth()/2),location.y+(subComponents[1].getHeight()/2));
+        JButton bouton_B = ((JButton)subComponents[1]);
+        bouton_B.doClick();
         TextArea sortie = (TextArea)components[1];
         StringTokenizer st = new StringTokenizer(sortie.getText(),"\n");
-        assertTrue("2 lignes sont attendues !!", st.countTokens()==2);
+        assertTrue("Cliquer sur le bouton B, 2 lignes sont attendues !!!", st.countTokens()==2);
+    
+    
 
     }
     public void test_clic_bouton_C() throws Exception{
@@ -103,13 +107,15 @@ public class IHMQuestion2_1Test extends junit.framework.TestCase
         assertTrue("ihm invalide ?, ne pas modifier l'interface",subComponents[1] instanceof JButton);
         assertTrue("ihm invalide ?, ne pas modifier l'interface",subComponents[2] instanceof JButton);
 
-        Point location = subComponents[2].getLocationOnScreen();
-        mouseMoveAndClick(location.x+(subComponents[2].getWidth()/2),location.y+(subComponents[2].getHeight()/2));
+        JButton bouton_C = ((JButton)subComponents[2]);
+        bouton_C.doClick();
         TextArea sortie = (TextArea)components[1];
         StringTokenizer st = new StringTokenizer(sortie.getText(),"\n");
-        assertTrue(" avec JButtonObserver  1 seule ligne est attendue !",st.countTokens()==1);
-
+        assertTrue("Cliquer sur le bouton B, 1 ligne est attendue !!!", st.countTokens()==1);
     }
+
+        
+       
 
    
     public void mouseMoveAndClick(int x, int y){
